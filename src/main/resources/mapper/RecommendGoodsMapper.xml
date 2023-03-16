@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ltd.newbee.mall.dao.RecommendGoodsMapper">
+<resultMap id="RecommendGoodsResultMap" type="ltd.newbee.mall.entity.RecommendGoods">
+        <id column="goods_id" jdbcType="BIGINT" property="goodsId"/>
+        <result column="rank" jdbcType="INT" property="rank"/>
+          <result column="goods_info" jdbcType="VARCHAR" property="goodsInfo"/>
+           <result column="goods_image" jdbcType="VARCHAR" property="goodsImage"/>
+            <result column="selling_price" jdbcType="INT" property="sellingPrice"/>
+        </resultMap>
+
+<sql id="Recommend_Goods_List">
+    rank,goods_id,goods_info,goods_image,selling_price
+</sql>
+ <select id="findRecommendGoodsList" parameterType="Map" resultMap="RecommendGoodsResultMap">
+        select
+        <include refid="Recommend_Goods_List"/>
+        from recommend_goods
+        JOIN tb_newbee_mall_goods_info ON recommendgoods.goods_id = tb_newbee_mall_goods_info.goods_id
+        order by rank desc
+        <if test="start!=null and limit!=null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+    </mapper>
