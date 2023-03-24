@@ -1,31 +1,70 @@
 package ltd.newbee.mall.entity;
 
+import java.text.NumberFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class RecommendGoods {
 	private int rank;
 	private int goodsId;
-	private String goodsInfo;
-	private String goodsImage;
-	public String getGoodsInfo() {
-		return goodsInfo;
+	
+	@JsonIgnore
+	private int type;
+	 @JsonIgnore
+	private int limit;
+	 @JsonIgnore
+	private int sellingPrice;
+	private String goodsPriceTaxIncluded;
+	private int stockNum;
+	 @JsonIgnore
+	private int deleteFlag;
+	private Date productionDate;
+	
+	
+	public int getStockNum() {
+		 return stockNum;
 	}
-	public void setGoodsInfo(String goodsInfo) {
-		this.goodsInfo = goodsInfo;
+	public void setStockNum(int stockNum) {
+		this.stockNum = stockNum;
 	}
-	public String getGoodsImage() {
-		return goodsImage;
+	public int getDeleteFlag() {
+		return deleteFlag;
 	}
-	public void setGoodsImage(String goodsImage) {
-		this.goodsImage = goodsImage;
+	public void setDeleteFlag(int deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
+	public Date getProductionDate() {
+		return productionDate;
+	}
+	public void setProductionDate(Date productionDate) {
+		this.productionDate = productionDate;
 	}
 	
 	public int getSellingPrice() {
 		return sellingPrice;
 	}
-	public void setSellingPrice(int sellingPrice) {
-		this.sellingPrice = sellingPrice;
+	public int getLimit() {
+		return limit;
 	}
-	private int sellingPrice;
-	
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+	private String goodsName;
+
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
 	
 	public int getGoodsId() {
 		return goodsId;
@@ -39,6 +78,21 @@ public class RecommendGoods {
 	public void setRank(int rank) {
 		this.rank = rank;
 	}
-}
+	public void setStockStatus(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public String getGoodsPriceTaxIncluded() {
+		return goodsPriceTaxIncluded+ "円";
+	}
+	public void setSellingPrice(int sellingPrice) {
+		this.sellingPrice = sellingPrice;
+		  int goodsPriceTaxIncluded = Math.round(sellingPrice * 1.1f);
+        this.goodsPriceTaxIncluded = NumberFormat.getInstance(Locale.JAPAN).format(goodsPriceTaxIncluded) + "円";
+		
+	}
 
+	
+}
 

@@ -29,7 +29,12 @@ public class PageQueryUtil extends LinkedHashMap<String, Object> {
     }
 
 
-    public int getPage() {
+    public PageQueryUtil() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public int getPage() {
         return page;
     }
 

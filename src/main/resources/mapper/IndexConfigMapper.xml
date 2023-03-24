@@ -208,3 +208,4 @@
     where config_id = #{configId,jdbcType=BIGINT}
   </update>
 </mapper>
+

@@ -5,19 +5,20 @@ import java.io.Serializable;
 public class RecommendGoodsVO implements Serializable{
 	private int rank;
 	private int goodsId;
-	private String goodsInfo;
-	private String goodsImage;
-	public String getGoodsInfo() {
-		return goodsInfo;
+	private String goodsName;
+	public String getGoodsName() {
+		return goodsName;
 	}
-	public void setGoodsInfo(String goodsInfo) {
-		this.goodsInfo = goodsInfo;
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
 	}
-	public String getGoodsImage() {
-		return goodsImage;
+	private String goodsIntro;
+	
+	public String getGoodsIntro() {
+		return goodsIntro;
 	}
-	public void setGoodsImage(String goodsImage) {
-		this.goodsImage = goodsImage;
+	public void setGoodsIntro(String goodsIntro) {
+		this.goodsIntro = goodsIntro;
 	}
 	
 	public int getSellingPrice() {
@@ -40,6 +41,22 @@ public class RecommendGoodsVO implements Serializable{
 	}
 	public void setRank(int rank) {
 		this.rank = rank;
+	}
+	public int getStockNum() {
+		// TODO Auto-generated method stub
+		return getStockNum();
+	}
+	public void setStockStatus(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	public int getDeleteFlag() {
+		// TODO Auto-generated method stub
+		return getDeleteFlag();
+	}
+	public void setGoodsPriceTaxIncluded(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -31,8 +31,8 @@ public class NewBeeMallIndexConfigGoodsVO implements Serializable {
         return goodsId;
     }
 
-    public void setGoodsId(Long goodsId) {
-        this.goodsId = goodsId;
+    public void setGoodsId(long i) {
+        this.goodsId = i;
     }
 
     public String getGoodsName() {
@@ -74,4 +74,5 @@ public class NewBeeMallIndexConfigGoodsVO implements Serializable {
     public void setTag(String tag) {
         this.tag = tag;
     }
+
 }

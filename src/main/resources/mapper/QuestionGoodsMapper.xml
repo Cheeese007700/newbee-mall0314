@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ltd.newbee.mall.dao.QuestionGoodsMapper">
+
+	<resultMap id="QuestionGoodsMapper"
+		type="ltd.newbee.mall.entity.QuestionGoods">
+		<id column="goods_id" property="goodsId" />
+		<id column="question_id" property="questionId" />
+		<result column="total_count" property="totalCount" />
+		<result column="question" property="question" />
+		<result column="answer" property="answer" />
+		<result column="user_count" property="userCount" />
+		<result column="total_Page" property="totalPage" />
+		<result column="question_date" property="questionDate" />
+	</resultMap>
+
+	<!-- 获取商品问答列表 及点赞数 -->
+	<select id="getQAList" resultMap="QuestionGoodsMapper">
+		SELECT
+		COUNT(question_like.user_id)AS user_count,
+		question_goods.goods_id,
+		question_goods.question_id,
+		question_goods.question,
+		question_goods.answer,
+		question_goods.question_date
+		FROM question_goods
+		LEFT JOIN question_like ON question_goods.goods_id =
+		question_like.goods_id
+		AND question_goods.question_id=question_like.question_id
+		WHERE question_goods.goods_id = #{goodsId}
+		GROUP BY question_goods.goods_id, question_goods.question_id
+
+		<if test="orderBy == 'Like'">
+			ORDER BY user_count DESC,question_goods.question_date DESC
+		</if>
+		<if test="orderBy != 'Like'">
+			ORDER BY question_goods.goods_id DESC, question_goods.question_date DESC
+		</if>
+
+		LIMIT #{start}, #{pageSize}
+
+
+	</select>
+	<!-- 获取商品问答总数 -->
+	<select id="getQuestionCount" parameterType="Map"
+		resultType="java.lang.Integer">
+		SELECT count(*)as questionCount
+		FROM question_goods
+		WHERE goods_id = #{goodsId}
+	</select>
+	
+	<!-- 获取商品likeCount -->
+	<select id="getLikeCount" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM question_like
+		WHERE goods_id= #{goodsId} and question_id= #{questionId}
+	</select>
+
+
+</mapper>

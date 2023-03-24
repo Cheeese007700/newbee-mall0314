@@ -1,3 +1,5 @@
+package ltd.newbee.mall.entity;
+
 /**
  * 严肃声明：
  * 开源版本请务必保留此注释头信息，若删除我方将保留所有法律责任追究！
@@ -6,7 +8,7 @@
  * Copyright (c) 2019-2020 十三 all rights reserved.
  * 版权所有，侵权必究！
  */
-package ltd.newbee.mall.entity;
+
 
 /**
  * 库存修改所需实体
